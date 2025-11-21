@@ -1,0 +1,283 @@
+:global(body) {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.pageContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.header h2 {
+    margin: 0;
+    color: #1a202c;
+}
+
+.header p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.statusBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.statusBadge.online {
+    background-color: #e6f7eb;
+    color: #228b22;
+}
+
+.formLayout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.mainForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #2d3748;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.75rem;
+}
+
+.card .sectionTitle {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.grid2cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #4a5568;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+    color: #a0aec0;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus,
+.inputGroup textarea:focus {
+    outline: none;
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.inputGroup textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.errorMessage {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.slaTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    color: #4a5568;
+}
+
+.slaBox {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.slaBox.blue {
+    background-color: #eef2ff;
+    border-left: 4px solid #4f46e5;
+}
+
+.slaBox.orange {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+}
+
+.slaBox.gray {
+    background-color: #f8f9fa;
+    border-left: 4px solid #6b7280;
+}
+
+.slaIcon {
+    font-size: 1.25rem;
+    padding-top: 0.25rem;
+}
+
+.slaBox.blue .slaIcon {
+    color: #4f46e5;
+}
+
+.slaBox.orange .slaIcon {
+    color: #f59e0b;
+}
+
+.slaBox.gray .slaIcon {
+    color: #6b7280;
+}
+
+.slaContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.slaBoxTitle {
+    font-size: 0.8rem;
+    color: #4a5568;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.slaBoxValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    line-height: 1.2;
+}
+
+.slaBoxSubtitle {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.slaLegend {
+    margin-top: 1rem;
+}
+
+.slaLegend h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+}
+
+.slaLegend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.slaLegend li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.critical {
+    background-color: #e53e3e;
+}
+
+.dot.high {
+    background-color: #f59e0b;
+}
+
+.dot.medium {
+    background-color: #ecc94b;
+}
+
+.dot.low {
+    background-color: #48bb78;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.875rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4F46E5;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #4338CA;
+}
