@@ -26,7 +26,7 @@ function ProfilePage() {
     formState: { errors: passErrors, isSubmitting: isSavingPass } 
   } = useForm();
 
-  const { user } = useAuth(); 
+  const { user, logout } = useAuth(); 
 
   useEffect(() => {
     async function loadProfile() {
