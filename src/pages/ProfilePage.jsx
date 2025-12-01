@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { 
-  FiUser, FiMail, FiLock, FiSave, FiArrowLeft, FiShield 
+  FiUser, FiMail, FiLock, FiSave, FiArrowLeft, FiShield, FiLogOut
 } from 'react-icons/fi';
 
 import styles from './ProfilePage.module.css';
