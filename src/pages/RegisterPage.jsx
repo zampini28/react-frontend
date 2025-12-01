@@ -14,19 +14,31 @@ import {
 import styles from './RegisterPage.module.css';
 
 function RegisterPage() {
-  const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data) => {
+    setIsLoading(true);
     try {
       await api.post('/auth/register/', data);
       alert('Usuário cadastrado com sucesso!');
       navigate('/login');
     } catch (error) {
       console.error('Erro no cadastro', error);
-      alert('Erro ao cadastrar usuário. Verifique os dados.');
+
+      const serverMsg = error.request?.responseText ?? '';
+
+      if (serverMsg.includes('already exists')) {
+        alert('Usuário ou e‑mail já cadastrado.');
+      } else {
+        alert('Erro ao cadastrar usuário. Verifique os dados.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,9 +64,24 @@ function RegisterPage() {
               id="username"
               type="text"
               placeholder="seu.usuario"
-              {...register('username', { required: true })}
+              {...register('username', { 
+                required: 'O usuário é obrigatório',
+                minLength: {
+                  value: 5,
+                  message: 'O usuário deve ter pelo menos 5 caracteres'
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'O usuário deve ter no máximo 30 caracteres'
+                },
+                pattern: {
+                  value: /^[\w.@+-]+$/, 
+                  message: 'Apenas letras, números e @ . + - _'
+                }
+              })}
             />
           </div>
+          {errors.username && <span className={styles.errorMessage}>{errors.username.message}</span>}
         </div>
 
         {/* campo email (email) */}
@@ -66,9 +93,16 @@ function RegisterPage() {
               id="email"
               type="email"
               placeholder="seu@email.com"
-              {...register('email', { required: true })}
+              {...register('email', { 
+                required: 'O email é obrigatório',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Email inválido"
+                }
+              })}
             />
           </div>
+          {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
         </div>
 
         {/* campo senha (password) */}
@@ -80,7 +114,17 @@ function RegisterPage() {
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="••••••••"
-              {...register('password', { required: true })}
+              {...register('password', { 
+                required: 'A senha é obrigatória',
+                minLength: {
+                  value: 6,
+                  message: 'A senha deve ter no mínimo 6 caracteres'
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'A senha deve ter no máximo 30 caracteres'
+                }
+              })}
             />
             {showPassword ? (
               <FiEyeOff
@@ -94,11 +138,18 @@ function RegisterPage() {
               />
             )}
           </div>
+          {errors.password && <span className={styles.errorMessage}>{errors.password.message}</span>}
         </div>
 
         {/* botão de cadastrar (submit) */}
-        <button type="submit" className={styles.loginButton}>
-          Cadastrar
+        <button type="submit" className={styles.loginButton} disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <FiLoader className={styles.spinner} /> Cadastrando...
+            </>
+          ) : (
+            "Cadastrar"
+          )}
         </button>
 
         {/* link de login */}

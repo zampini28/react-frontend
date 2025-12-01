@@ -7,7 +7,8 @@ import {
   FiUser,
   FiLock,
   FiEye,
-  FiEyeOff
+  FiEyeOff,
+  FiLoader
 } from 'react-icons/fi';
 
 import styles from './LoginPage.module.css';
@@ -20,12 +21,21 @@ function LoginPage() {
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data) => {
-    const success = await login(data.username, data.password);
-    if (success) {
-      navigate('/');
-    } else {
-      alert('Usuário ou senha inválidos!');
+    setIsLoading(true);
+    try {
+      const success = await login(data.username, data.password);
+      if (success) {
+        navigate('/');
+      } else {
+        alert('Usuário ou senha inválidos!');
+      }
+    } catch (error) {
+      alert('Erro ao conectar com o servidor.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -99,8 +109,14 @@ function LoginPage() {
         </div>
 
         {/* botão de entrar (submit) */}
-        <button type="submit" className={styles.loginButton}>
-          Entrar
+        <button type="submit" className={styles.loginButton} disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <FiLoader className={styles.spinner} /> Entrando...
+            </>
+          ) : (
+            "Entrar"
+          )}
         </button>
 
         {/* link de cadastro */}
