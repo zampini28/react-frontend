@@ -8,7 +8,8 @@ import {
   FiAtSign,
   FiLock,
   FiEye,
-  FiEyeOff
+  FiEyeOff,
+  FiLoader
 } from 'react-icons/fi';
 
 import styles from './RegisterPage.module.css';
